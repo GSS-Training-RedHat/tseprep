@@ -20,7 +20,7 @@ from tincan import (
 )
 
 
-# need to parse out and use these variables: 	exec ${PYUTIL} ${NAME},${MBOX},${VERBID},${VERBNAME},${OBJTYPE},${OBJID},${OBJNAME},${OBJDESC}
+# need to parse out and use these variables: tincan ${NAME} ${MBOX} ${VERBID} ${VERBNAME} ${OBJTYPE} ${OBJID} ${OBJNAME} ${OBJDESC}
 if len(sys.argv) == 9:
     NAME=sys.argv[1]
     MBOX=sys.argv[2]
