@@ -4,6 +4,8 @@
 import uuid
 import sys
 
+sys.path.append('/usr/share/TinCanPython')
+
 #from resources import lrs_properties
 from tincan import (
     RemoteLRS,
