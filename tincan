@@ -42,14 +42,14 @@ lrs = RemoteLRS(
 #    endpoint=lrs_properties.endpoint,
 #    username=lrs_properties.username,
 #    password=lrs_properties.password,
-#    version='1.0.1',
-#    endpoint='http://ll-learninglocker-fiulwm5f.srv.ravcloud.com:10001/data/xAPI/',
-#    username='659c86777de6f133a131b2450115620e93cfa800',
-#    password='8b0db5fd1baffc08be59571ba9ccf4313dd2d27e',
-  endpoint="http://lrs1.example.com:8080/data/xAPI/",
-  version="1.0.1",
-  username="ada05f8d33428072e78b6fa606bf4118c346d0c9",
-  password="16033570628ace54859b9df69efba81ccb2c237b",
+    version='1.0.1',
+    endpoint='http://ll-learninglocker-fiulwm5f.srv.ravcloud.com:10001/data/xAPI/',
+    username='659c86777de6f133a131b2450115620e93cfa800',
+    password='8b0db5fd1baffc08be59571ba9ccf4313dd2d27e',
+  #endpoint="http://lrs1.example.com:8080/data/xAPI/",
+  #version="1.0.1",
+  #username="ada05f8d33428072e78b6fa606bf4118c346d0c9",
+  #password="16033570628ace54859b9df69efba81ccb2c237b",
 
 )
 #print "...done"
