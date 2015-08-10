@@ -1,0 +1,121 @@
+#!/usr/bin/python
+# An example script showing the functionality of the TinCanPython Library
+
+import uuid
+import sys
+
+#from resources import lrs_properties
+from tincan import (
+    RemoteLRS,
+    Statement,
+    Agent,
+    Verb,
+    Activity,
+    Context,
+    LanguageMap,
+    ActivityDefinition,
+    StateDocument,
+)
+
+
+# need to parse out and use these variables: 	exec ${PYUTIL} ${NAME},${MBOX},${VERBID},${VERBNAME},${OBJTYPE},${OBJID},${OBJNAME},${OBJDESC}
+#arguments = ' '.join(sys.argv[1:]) 
+#argument_list = arguments.split(',,')
+argument_list = sys.argv[1:]
+print argument_list
+NAME=argument_list[0]
+MBOX=argument_list[1]
+VERBID=argument_list[2]
+VERBNAME=argument_list[3]
+OBJTYPE=argument_list[4]
+OBJID=argument_list[5]
+OBJNAME=argument_list[6]
+OBJDESC=argument_list[7]
+#print OBJDESC
+#sys.exit(1)
+
+
+# construct an LRS
+#print "constructing the LRS..."
+lrs = RemoteLRS(
+#    version=lrs_properties.version,
+#    endpoint=lrs_properties.endpoint,
+#    username=lrs_properties.username,
+#    password=lrs_properties.password,
+#    version='1.0.1',
+#    endpoint='http://ll-learninglocker-fiulwm5f.srv.ravcloud.com:10001/data/xAPI/',
+#    username='659c86777de6f133a131b2450115620e93cfa800',
+#    password='8b0db5fd1baffc08be59571ba9ccf4313dd2d27e',
+  endpoint="http://lrs1.example.com:8080/data/xAPI/",
+  version="1.0.1",
+  username="ada05f8d33428072e78b6fa606bf4118c346d0c9",
+  password="16033570628ace54859b9df69efba81ccb2c237b",
+
+)
+#print "...done"
+
+# construct the actor of the statement
+#print "constructing the Actor..."
+actor = Agent(
+    name=NAME,
+    mbox=MBOX,
+)
+#print "...done"
+
+# construct the verb of the statement
+#print "constructing the Verb..."
+verb = Verb(
+    id=VERBID,
+    display=LanguageMap({'en-US': VERBNAME}),
+)
+#print "...done"
+
+
+object = eval(OBJTYPE)(
+    id=OBJID,
+    definition=ActivityDefinition(
+        name=LanguageMap({'en-US': OBJNAME}),
+        description=LanguageMap({'en-US': OBJDESC}),
+    ),
+)
+
+
+
+#print "...done"
+
+# construct a context for the statement
+#print "constructing the Context..."
+context = Context(
+    registration=uuid.uuid4(),
+    instructor=Agent(
+        name='GSS Training',
+        mbox='mailto:gss-training-dev@redhat.com',
+    ),
+)
+#print "...done"
+
+# construct the actual statement
+#print "constructing the Statement..."
+statement = Statement(
+    actor=actor,
+    verb=verb,
+    object=object,
+    context=context,
+)
+#print "...done"
+
+# save our statement to the remote_lrs and store the response in 'response'
+#print "saving the Statement..."
+response = lrs.save_statement(statement)
+
+if not response:
+    raise ValueError("Failed to record statement. Expect no tracking.")
+#print "...done"
+
+# retrieve our statement from the remote_lrs using the id returned in the response
+#print "Now, retrieving statement..."
+response = lrs.retrieve_statement(response.content.id)
+
+if not response.success:
+    raise ValueError("Statement could not be retrieved. Expect no tracking.")
+#print "...done"
