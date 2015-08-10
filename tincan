@@ -3,6 +3,7 @@
 
 import uuid
 import sys
+sys.path.append('/usr/share/TinCanPython')
 
 #from resources import lrs_properties
 from tincan import (
@@ -19,20 +20,18 @@ from tincan import (
 
 
 # need to parse out and use these variables: 	exec ${PYUTIL} ${NAME},${MBOX},${VERBID},${VERBNAME},${OBJTYPE},${OBJID},${OBJNAME},${OBJDESC}
-#arguments = ' '.join(sys.argv[1:]) 
-#argument_list = arguments.split(',,')
-argument_list = sys.argv[1:]
-print argument_list
-NAME=argument_list[0]
-MBOX=argument_list[1]
-VERBID=argument_list[2]
-VERBNAME=argument_list[3]
-OBJTYPE=argument_list[4]
-OBJID=argument_list[5]
-OBJNAME=argument_list[6]
-OBJDESC=argument_list[7]
-#print OBJDESC
-#sys.exit(1)
+if len(sys.argv) == 9:
+    NAME=sys.argv[1]
+    MBOX=sys.argv[2]
+    VERBID=sys.argv[3]
+    VERBNAME=sys.argv[4]
+    OBJTYPE=sys.argv[5]
+    OBJID=sys.argv[6]
+    OBJNAME=sys.argv[7]
+    OBJDESC=sys.argv[8]
+else:
+    print "Incorrect number of arguments.  Got "+ str(len(sys.argv)-1) + " expected 8."
+    sys.exit(1)
 
 
 # construct an LRS
