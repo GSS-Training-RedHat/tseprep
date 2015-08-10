@@ -1,0 +1,9 @@
+[Unit]
+Description=Update system for TSE Accreditations
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/tseprep
+
+[Install]
+WantedBy=multi-user.target
