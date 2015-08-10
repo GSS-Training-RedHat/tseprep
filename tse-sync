@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# utility to sync the latest TSE Accreditation content from git
+SUCCESS=false
+until [[ $SUCCESS == "true" ]]
+do
+    cd /usr/share/tse && git pull
+    if [ $? -eq 0 ]
+    then
+        cd /usr/share/TinCanPython && git pull 	
+        if [ $? -eq 0 ]
+        then
+            echo "Sync successful."
+            SUCCESS=true 
+        else
+            echo "Failed to sync /usr/share/TinCanPython"
+            sleep 5
+        fi
+    else
+        echo "Failed to sync /usr/share/tse"
+        sleep 5
+    fi 
+  
+done 
+
+exit 0
