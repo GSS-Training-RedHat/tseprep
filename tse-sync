@@ -7,10 +7,10 @@ mysync() {
     cd $syncdir && git pull
 }
 
-SUCCESS=false
 
 while read DIR
 do
+    SUCCESS=false
     while [[ $SUCCESS == "false" ]]
     do
         mysync $DIR
