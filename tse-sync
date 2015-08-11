@@ -12,7 +12,7 @@ while read DIR
 do
     SUCCESS=false
     COUNT=0
-    while [[ $SUCCESS == "false" ]] || [ $COUNT -lt 10 ]
+    while [[ "$SUCCESS" == "false" ]] && [ "$COUNT" -lt 10 ]
     do
         mysync $DIR
         if [ $? -eq 0 ]
