@@ -11,7 +11,8 @@ mysync() {
 while read DIR
 do
     SUCCESS=false
-    while [[ $SUCCESS == "false" ]]
+    COUNT=0
+    while [[ $SUCCESS == "false" ]] || [ $COUNT -lt 10 ]
     do
         mysync $DIR
         if [ $? -eq 0 ]
@@ -19,6 +20,7 @@ do
             SUCCESS=true
         else
             SUCCESS=false
+            COUNT=$((COUNT+1))
             sleep 5
         fi
     done
