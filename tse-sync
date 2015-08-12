@@ -28,6 +28,6 @@ do
     then
         echo "Unable to sync repository in ${DIR}. Giving up."
     fi
-done < /etc/tseprep.conf
+done < /etc/tse-sync.conf
 
 exit 0

@@ -1,9 +1,0 @@
-[Unit]
-Description=Update system for TSE Accreditations
-
-[Service]
-Type=oneshot
-ExecStart=/usr/local/bin/tse-sync
-
-[Install]
-WantedBy=multi-user.target
